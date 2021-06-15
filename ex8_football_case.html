@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="playerlist.js"></script>
+    <title>Premier League Football Player List</title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="resCtrl">
+        <table border="1">
+            <b ng-bind="positionInTeam"></b> {{xPosition}}, {{yPosition}}
+            <br> You can filter for a specific position
+            <select ng-model="chosenPosition" ng-options="choicePos.pos for choicePos in positions"></select>
+            <tr>
+                <th>#</th>
+                <th ng-click='orderFunction("first_name")'>First Name</th>
+                <th ng-click='orderFunction("last_name")'>Last Name</th>
+                <th ng-click='orderFunction("team")'>Team</th>
+            </tr>
+            <tr ng-if="x.first_name&&x.last_name" ng-repeat="x in result | filter: chosenPosition.pos | orderBy: myOrder  ">
+                <td>{{$index+1}}</td>
+                <td>{{x.first_name}}</td>
+                <td ng-mouseover="mouseOverFunction(x.identifier, $event)"
+                    ng-mouseleave="mouseLeaveFunction()"
+                >{{x.last_name}}</td>
+                <td>{{x.team}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        app = angular.module('myApp', []);
+        app.controller('resCtrl', function($scope){
+            $scope.positions=[{pos:''}, {pos:'Defender'}, {pos:'Midfielder 1'}, {pos: 'Midfielder 2'}, {pos: 'Striker'}, {pos: 'Goalkeeper'}]
+            $scope.result=players
+            $scope.mouseOverFunction = function(id, myEvent){
+                players.forEach(p => {
+                    if(p.identifier == id){
+                        $scope.positionInTeam = p.position
+                        return;
+                    }
+                });
+                $scope.xPosition = myEvent.clientX;
+                $scope.yPosition = myEvent.clientY;
+            }
+            $scope.mouseLeaveFunction = ()=>{
+                $scope.positionInTeam = ""
+            }
+            $scope
+            reverse=""
+            $scope.orderFunction = function(x){
+                if(reverse==""){
+                    reverse="-"
+                }else{
+                    reverse=""
+                }
+                $scope.myOrder = reverse+x;
+            }
+        })
+    </script>
+</body>
+
+</html>

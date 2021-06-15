@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Hellow AngularJS</title>
+</head>
+<body>
+    <div ng-app="" ng-init="x=100; y=2;">
+        <h1>Welcome to AngularJS Training</h1>
+        <br>What is your name?
+        <input type="text" name="" id="" ng-model="username">
+        <br>Hello {{username}}
+        <p ng-bind="username"></p>
+        username is binding inside the tag (element)
+        <p class="{{username}}">ทดสอบ</p>
+
+        <br>x = <input type="text" ng-model="x"> 
+        <br>y = <input type="text" ng-model="y"> 
+        <br>{{x + "/" + y + "=" + x/y}}
+        
+    </div>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</body>
+</html>

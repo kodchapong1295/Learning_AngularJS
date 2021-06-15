@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Repeat(Loop) Example</title>
+</head>
+<body>
+    <div ng-app=""
+        ng-init="students=['Jannette', 'Opal', 'Athip', 'Golf', 'Toei', 'Best', 'Mix', 'DJ', 'Stamp'];
+                gpas = [3.44, 3.11, 2.49, 3.44, 4.00, 2.04, 2.33, 3.24, 3.23, 3.34]; ">
+        <h2>Student Roster</h2>
+        <ol>
+            <li ng-repeat="x in students">{{x}}: {{gpas[$index]}}</li>
+        </ol>
+    </div>
+</body>
+</html>

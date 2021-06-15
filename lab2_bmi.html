@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <div ng-app="" 
+        ng-init="shop = 'Health Care Services'; weight=0; height=0;
+                bmiString = [{min:1, max:18.5, str:'below normal weight'},
+                            {min:18.5, max:25, str:'normal weight'},
+                            {min:25, max:30, str:'over weight'},
+                            {min:30, max:100, str:'obesity'},];">
+        <h2>Welcome to {{shop}}</h2>
+        What is you name? <input type="text" ng-model="uname"><br>
+        <b ng-bind="uname"></b> <b ng-if="uname">is our value customer.</b><br>
+        
+
+
+        weight(kg) = <input type="text" ng-model="weight"><br>
+        height(cm) = <input type="text" ng-model="height"><br>
+        <b ng-if="weight&&height">Your BMI = {{weight/(height*height/100/100)}}</b>
+
+        <i ng-if="weight&&height">
+            <span ng-repeat="x in bmiString">
+                <i ng-if="(weight/(height*height/100/100)) >= x.min && (weight/(height*height/100/100))<x.max"><br>{{uname}} is {{x.str}}</i>
+            </span>
+        </i>
+    </div>
+</body>
+</html>
